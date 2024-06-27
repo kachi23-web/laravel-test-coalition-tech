@@ -3,9 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 
 Route::get('/', [ProductController::class, 'create'])->name('product.create');
 Route::get('/viewProduct', [ProductController::class, 'index'])->name('viewProduct.create');

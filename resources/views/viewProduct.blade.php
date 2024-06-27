@@ -16,17 +16,7 @@
             <div class="input-group">
                 <input type="search" placeholder="Search Data...">
             </div>
-            <!-- <div class="export__file">
-                <label for="export-file" class="export__file-btn" title="Export File"></label>
-                <input type="checkbox" id="export-file">
-                <div class="export__file-options">
-                    <label>Export As &nbsp; &#10140;</label>
-                    <label for="export-file" id="toPDF">PDF <img src="images/pdf.png" alt=""></label>
-                    <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""></label>
-                    <label for="export-file" id="toCSV">CSV <img src="images/csv.png" alt=""></label>
-                    <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""></label>
-                </div>
-            </div> -->
+            
         </section>
         <section class="table__body">
             <table>
@@ -34,8 +24,8 @@
                     <tr>
                         <th> Id <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Product Name <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Quantity <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Price <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Quantity in Stock <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Price per Item <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Date <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Total <span class="icon-arrow">&UpArrow;</span></th>
                         <th> <span class="icon-arrow"></span></th>

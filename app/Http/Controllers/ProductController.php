@@ -48,13 +48,55 @@ class ProductController extends Controller
         ]);
 
 
-         
+         // Save data to JSON file
+         $jsonFilePath = storage_path('app/products.json');
+         $jsonData = $this->getJsonData($jsonFilePath);
+         $jsonData[] = $validator;
+         File::put($jsonFilePath, json_encode($jsonData, JSON_PRETTY_PRINT));
+ 
+         // Save data to XML file
+         $xmlFilePath = storage_path('app/products.xml');
+         $xmlData = $this->getXmlData($xmlFilePath);
+         $xmlData->addChild('product', $this->arrayToXml($validator));
+         File::put($xmlFilePath, $xmlData->asXML());
+ 
 
         return redirect()->route('product.create')->with('success', 'Product Added created successfully.');
     }
     
 
+    private function getJsonData($filePath)
+    {
+        if (File::exists($filePath)) {
+            return json_decode(File::get($filePath), true);
+        }
+        return [];
+    }
 
+    private function getXmlData($filePath)
+    {
+        if (File::exists($filePath)) {
+            return simplexml_load_file($filePath);
+        }
+        return new \SimpleXMLElement('<products/>');
+    }
+
+    private function arrayToXml($array, &$xmlData = null)
+    {
+        if ($xmlData === null) {
+            $xmlData = new \SimpleXMLElement('<product/>');
+        }
+
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $subNode = $xmlData->addChild("$key");
+                $this->arrayToXml($value, $subNode);
+            } else {
+                $xmlData->addChild("$key", htmlspecialchars("$value"));
+            }
+        }
+        return $xmlData;
+    }
 
     public function edit($id)
     {
