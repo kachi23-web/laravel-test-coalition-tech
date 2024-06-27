@@ -54,6 +54,32 @@ class ProductController extends Controller
     }
     
 
+
+
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('edit', compact('product'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'productname' => 'required|string|max:255',
+            'qty' => 'required|string',
+            'price' => 'required|string',
+        ]);
+
+    
+
+        $products = Product::findOrFail($id);
+        $products->update($request->all());
+
+
+       
+        return redirect()->route('viewProduct.create')->with('error', 'Product not found successfully.');
+
+        }
     
 
 }
